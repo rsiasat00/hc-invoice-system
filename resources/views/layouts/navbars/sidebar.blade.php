@@ -14,8 +14,8 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
-                        <span class="avatar avatar-sm rounded-circle">
-                        <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
+                        <span class="avatar avatar-sm rounded-circle bg-primary">
+                            <i class="fas fa-user text-white"></i>
                         </span>
                     </div>
                 </a>
@@ -119,9 +119,51 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                {{-- <a class="nav-link" href="{{ route('invoice.index') }}">
+                                <a class="nav-link" href="{{ route('invoice.index') }}">
                                     {{ __('Invoice Management') }}
-                                </a> --}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#products" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="products">
+                        <i class="ni ni-cart text-primary"></i> {{ __('Products') }}
+                    </a>
+
+                    <div class="collapse" id="products">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    {{ __('Add Product') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    {{ __('Product Management') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#orders" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="orders">
+                        <i class="ni ni-basket text-primary"></i> {{ __('Orders') }}
+                    </a>
+
+                    <div class="collapse" id="orders">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    {{ __('Add Order') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="# ">
+                                    {{ __('Order Management') }}
+                                </a>
                             </li>
                         </ul>
                     </div>
