@@ -14,7 +14,6 @@ class AddOrderInvoiceForeignKey extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->unsignedInteger('product_id')->nullable();
             $table->foreign('invoice_id')
                     ->references('id')->on('invoices');
             $table->foreign('product_id')

@@ -14,4 +14,12 @@ class Invoice extends Model
     protected $fillable = [
         'name', 'address', 'invoice_date', 'invoice_number', 'due_date', 'note'
     ];
+
+    public function customer() {
+        return $this->belongsTo('App\User');
+    }
+
+    public function orders() {
+        return $this->hasMany('App\Order');
+    }
 }

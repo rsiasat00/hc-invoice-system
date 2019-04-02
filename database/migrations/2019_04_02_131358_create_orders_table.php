@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->dateTime('order_date')->nullable();
             $table->unsignedInteger('invoice_id')->nullable();
-            $table->unsignedInteger('products_id')->nullable();
+            $table->unsignedInteger('product_id')->nullable();
             $table->integer('quantity')->default(0);
             
             $table->timestamps();
