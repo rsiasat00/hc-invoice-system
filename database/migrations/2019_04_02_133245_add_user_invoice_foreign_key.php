@@ -14,7 +14,6 @@ class AddUserInvoiceForeignKey extends Migration
     public function up()
     {
         Schema::table('invoices', function (Blueprint $table) {
-            $table->unsignedInteger('customer_id')->nullable();
 
             $table->foreign('customer_id')
                     ->references('id')->on('users');
@@ -31,7 +30,7 @@ class AddUserInvoiceForeignKey extends Migration
         
         Schema::table('invoices', function (Blueprint $table) {
             $table->dropForeign(['customer_id']);
-            $table->dropColumn(['customer_id']);
+            // $table->dropColumn(['customer_id']);
         });
     }
 }
