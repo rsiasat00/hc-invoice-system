@@ -16,6 +16,8 @@ class AddOrderInvoiceForeignKey extends Migration
         Schema::table('orders', function (Blueprint $table) {
             $table->foreign('invoice_id')
                     ->references('id')->on('invoices');
+            $table->foreign('product_id')
+                    ->references('id')->on('products');
         });
     }
 
@@ -28,6 +30,7 @@ class AddOrderInvoiceForeignKey extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->dropForeign(['invoice_id']);
+            $table->dropForeign(['product_id']);
         });
     }
 }
