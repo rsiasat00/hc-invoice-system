@@ -21,9 +21,6 @@ class CreateOrdersTable extends Migration
             $table->integer('quantity')->default(0);
             
             $table->timestamps();
-
-            $table->foreign('invoice_id')
-                    ->references('id')->on('invoices');
             
         });
     }
@@ -35,9 +32,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeign(['invoice_id']);
-        });
         Schema::dropIfExists('orders');
     }
 }

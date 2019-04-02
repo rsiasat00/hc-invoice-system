@@ -21,9 +21,6 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger("order_id")->nullable();
 
             $table->timestamps();
-
-            $table->foreign('order_id')
-                    ->references('id')->on('orders');
         });
     }
 
@@ -34,9 +31,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign(['order_id']);
-        });
         Schema::dropIfExists('products');
     }
 }

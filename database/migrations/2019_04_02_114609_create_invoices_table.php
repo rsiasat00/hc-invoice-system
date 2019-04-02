@@ -21,6 +21,7 @@ class CreateInvoicesTable extends Migration
             $table->integer('invoice_number');
             $table->date('due_date');
             $table->text('note');
+            $table->unsignedInteger('customer_id')->nullable();
             $table->timestamps();
         });
     }
