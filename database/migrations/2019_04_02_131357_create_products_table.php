@@ -34,7 +34,9 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        $table->dropForeign(['order_id']);
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign(['order_id']);
+        });
         Schema::dropIfExists('products');
     }
 }

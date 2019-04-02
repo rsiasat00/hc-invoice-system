@@ -35,7 +35,9 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        $table->dropForeign(['invoice_id']);
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropForeign(['invoice_id']);
+        });
         Schema::dropIfExists('orders');
     }
 }
