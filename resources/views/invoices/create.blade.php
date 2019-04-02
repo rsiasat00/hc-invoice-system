@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('address') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-address">{{ __('Address') }}&nbsp;<span class="text-danger">*</span></label>
-                                    <textarea rows="5" name="address" id="input-address" class="form-control form-control-alternative{{ $errors->has('address') ? ' is-invalid' : '' }}" placeholder="{{ __('Address') }}" value="{{ old('address') }}" required></textarea>
+                                    <textarea rows="5" name="address" id="input-address" class="form-control form-control-alternative{{ $errors->has('address') ? ' is-invalid' : '' }}" placeholder="{{ __('Address') }}" required>{{ old('address') }}</textarea>
 
                                     @if ($errors->has('address'))
                                         <span class="invalid-feedback" role="alert">
@@ -78,7 +78,7 @@
 
                                 <div class="form-group{{ $errors->has('note') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-note">{{ __('Note') }}&nbsp;<span class="text-danger">*</span></label>
-                                    <textarea rows="5" name="note" id="input-note" class="form-control form-control-alternative{{ $errors->has('note') ? ' is-invalid' : '' }}" placeholder="{{ __('Note') }}" value="{{ old('note') }}" required></textarea>
+                                    <textarea rows="5" name="note" id="input-note" class="form-control form-control-alternative{{ $errors->has('note') ? ' is-invalid' : '' }}" placeholder="{{ __('Note') }}" required>{{ old('note') }}</textarea>
 
                                     @if ($errors->has('note'))
                                         <span class="invalid-feedback" role="alert">
