@@ -23,5 +23,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
 	Route::resource('invoice', 'InvoiceController', ['except' => ['show']]);
+	Route::resource('product', 'ProductController', ['except' => ['show']]);
 });
 

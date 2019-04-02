@@ -62,10 +62,10 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-6">
-                                <button class="btn btn-white text-primary btn-block p-4" disabled>Add Product</button>
+                                <a class="btn btn-white text-primary btn-block p-4" href="{{ route('product.create') }}">Add Product</a>
                             </div>
                             <div class="col-6">
-                                <button class="btn btn-white text-primary btn-block p-4" disabled>Manage Products</button>
+                                <a class="btn btn-white text-primary btn-block p-4" href="{{ route('product.index') }}">Manage Products</a>
                             </div>
                         </div>
                     </div>
@@ -82,11 +82,8 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-6">
-                                <button class="btn btn-white text-primary btn-block p-4" disabled>Add Order</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-white text-primary btn-block p-4" disabled>Manage Orders</button>
+                            <div class="col-12">
+                                <buttaon class="btn btn-white text-primary btn-block p-4" href="#">Manage Orders</buttaon>
                             </div>
                         </div>
                     </div>
