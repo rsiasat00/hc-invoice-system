@@ -6,6 +6,7 @@ use App\Invoice;
 use Illuminate\Http\Request;
 use App\Http\Requests\InvoiceRequest;
 use App\Http\Requests\InvoiceRequestUpdate;
+use Auth;
 
 class InvoiceController extends Controller
 {
@@ -37,7 +38,7 @@ class InvoiceController extends Controller
      */
     public function store(InvoiceRequest $request, Invoice $model)
     {
-        $model->create($request->all());
+        $model->create($request->merge(['customer_id' => Auth::user()->id])->all());
         return redirect()->route('invoice.index')->withStatus(__('Invoice successfully created.'));
     }
 
@@ -72,7 +73,7 @@ class InvoiceController extends Controller
      */
     public function update(InvoiceRequestUpdate $request, Invoice $invoice)
     {
-        $invoice->update($request->all());
+        $invoice->update($request->merge(['customer_id' => Auth::user()->id])->all());
 
         return redirect()->route('invoice.index')->withStatus(__('Invoice successfully updated.'));
     }

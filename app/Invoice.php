@@ -12,7 +12,7 @@ class Invoice extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'invoice_date', 'invoice_number', 'due_date', 'note'
+        'name', 'address', 'invoice_date', 'invoice_number', 'due_date', 'note', 'customer_id'
     ];
 
     public function customer() {
