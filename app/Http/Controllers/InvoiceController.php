@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Invoice;
 use Illuminate\Http\Request;
+use App\Http\Requests\InvoiceRequest;
 
 class InvoiceController extends Controller
 {
@@ -33,9 +34,10 @@ class InvoiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InvoiceRequest $request, Invoice $model)
     {
-        //
+        $model->create($request->all());
+        return redirect()->route('invoice.index')->withStatus(__('Invoice successfully created.'));
     }
 
     /**
