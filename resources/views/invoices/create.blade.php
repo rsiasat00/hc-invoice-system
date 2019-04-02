@@ -12,9 +12,9 @@
                             <div class="col-8">
                                 <h3 class="mb-0">{{ __('Add Invoice') }}</h3>
                             </div>
-                            {{-- <div class="col-4 text-right">
+                            <div class="col-4 text-right">
                                 <a href="{{ route('invoice.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">

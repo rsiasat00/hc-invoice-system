@@ -23,8 +23,5 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
 	Route::resource('invoice', 'InvoiceController', ['except' => ['show']]);
-	Route::get('invoice', ['as' => 'invoice.index', 'uses' => 'InvoiceController@index']);
-	Route::get('invoice', ['as' => 'invoice.edit', 'uses' => 'InvoiceController@edit']);
-	Route::put('invoice', ['as' => 'invoice.update', 'uses' => 'InvoiceController@update']);
 });
 

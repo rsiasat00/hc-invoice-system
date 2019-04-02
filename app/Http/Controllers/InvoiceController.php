@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Invoice;
 use Illuminate\Http\Request;
 use App\Http\Requests\InvoiceRequest;
+use App\Http\Requests\InvoiceRequestUpdate;
 
 class InvoiceController extends Controller
 {
@@ -15,7 +16,7 @@ class InvoiceController extends Controller
      */
     public function index(Invoice $model)
     {
-        return view('invoices.index', ['invoices' => $model->paginate(15)]);
+        return view('invoices.index', ['invoices' => $model->orderBy('invoice_number', 'DESC')->paginate(15)]);
     }
 
     /**
@@ -57,9 +58,9 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Invoice $invoice)
     {
-        //
+        return view('invoices.edit', compact('invoice'));
     }
 
     /**
@@ -69,9 +70,11 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(InvoiceRequestUpdate $request, Invoice $invoice)
     {
-        //
+        $invoice->update($request->all());
+
+        return redirect()->route('invoice.index')->withStatus(__('Invoice successfully updated.'));
     }
 
     /**
@@ -80,8 +83,10 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Invoice $invoice)
     {
-        //
+        $invoice->delete();
+
+        return redirect()->route('invoice.index')->withStatus(__('Invoice successfully deleted.'));
     }
 }
