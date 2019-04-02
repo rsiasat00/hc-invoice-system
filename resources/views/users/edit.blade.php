@@ -25,7 +25,7 @@
                             <h6 class="heading-small text-muted mb-4">{{ __('User information') }}</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
+                                    <label class="form-control-label" for="input-name">{{ __('Name') }}&nbsp;<span class="text-danger">*</span></label>
                                     <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', $user->name) }}" required autofocus>
 
                                     @if ($errors->has('name'))
@@ -35,7 +35,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
+                                    <label class="form-control-label" for="input-email">{{ __('Email') }}&nbsp;<span class="text-danger">*</span></label>
                                     <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', $user->email) }}" required>
 
                                     @if ($errors->has('email'))
@@ -45,7 +45,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-password">{{ __('Password') }}</label>
+                                    <label class="form-control-label" for="input-password">{{ __('Password') }}&nbsp;<span class="text-danger">*</span></label>
                                     <input type="password" name="password" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" value="">
                                     
                                     @if ($errors->has('password'))
@@ -55,7 +55,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-password-confirmation">{{ __('Confirm Password') }}</label>
+                                    <label class="form-control-label" for="input-password-confirmation">{{ __('Confirm Password') }}&nbsp;<span class="text-danger">*</span></label>
                                     <input type="password" name="password_confirmation" id="input-password-confirmation" class="form-control form-control-alternative" placeholder="{{ __('Confirm Password') }}" value="">
                                 </div>
 
