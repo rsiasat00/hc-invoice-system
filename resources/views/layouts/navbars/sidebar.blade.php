@@ -135,12 +135,12 @@
                     <div class="collapse" id="products">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('product.create') }}">
                                     {{ __('Add Product') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('product.index') }}">
                                     {{ __('Product Management') }}
                                 </a>
                             </li>
@@ -157,11 +157,6 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    {{ __('Add Order') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="# ">
                                     {{ __('Order Management') }}
                                 </a>
                             </li>
