@@ -13,6 +13,13 @@
                                 <h3 class="mb-0">{{ __('Edit User') }}</h3>
                             </div>
                             <div class="col-4 text-right">
+                                <form action="{{ route('user.destroy', $user) }}" method="post" class="d-inline-block">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                        {{ __('Delete') }}
+                                    </button>
+                                </form>
                                 <a href="{{ route('user.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                             </div>
                         </div>
