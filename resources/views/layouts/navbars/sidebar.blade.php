@@ -114,7 +114,7 @@
                     <div class="collapse" id="invoices">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('invoice.create') }}">
+                                <a class="nav-link sidebar-add-invoice" href="{{ route('invoice.create') }}">
                                     {{ __('Add Invoice') }}
                                 </a>
                             </li>

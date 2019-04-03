@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr id="product-row-1">
 
             <td>
                 <select class="custom-select" id="product_1">
