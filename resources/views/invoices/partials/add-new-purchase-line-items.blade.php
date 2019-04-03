@@ -24,7 +24,7 @@
                     <option selected>Choose...</option>
                     
                     @foreach ($products as $product)
-                      <option value="{{ $product->id }}">{{ $product->name }}</option>
+                <option value="{{ $product->id }}" price="{{ $product->price }}" tax="{{ $product->tax }}">{{ $product->name }}</option>
                     @endforeach
                 </select>
             </td>

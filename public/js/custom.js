@@ -54,50 +54,58 @@ $(document).ready(function() {
     })
   });
 
-    // Add Invoice Sidebar Click
-    // $('a.sidebar-add-invoice').on('click', function(e) {
-    //     e.preventDefault();
-    // });
+  // Onchange Product on Purchase Line Items
+  $(".product-purchase-select").on('change', function(e) {
+    e.preventDefault();
+    var selectedProduct = $("option:selected", this);
+    
+    productPrice = selectedProduct.attr('price');
+    productTax = selectedProduct.attr('tax');
+    
+    $(this).parent().parent().find("input[name^='product-price']").val(productPrice);
+    $(this).parent().parent().find("input[name^='product-tax']").val(productTax);
+  })
 
-    // Add New Purchase Line Items
-    $(".btn-add-purchase-line-item").on('click', function(e) {
-      e.preventDefault();
+  // Add New Purchase Line Items
+  $(".btn-add-purchase-line-item").on('click', function(e) {
+    e.preventDefault();
 
-      var trLength = $(this).parent().next().find('tbody tr').length;
-      var lastTR = $(this).parent().next().find('tbody tr:last');
-      var clonedLastTR = lastTR.clone(true, true);
-      var latestRowCount = (trLength + 1);
+    var trLength = $(this).parent().next().find('tbody tr').length;
+    var lastTR = $(this).parent().next().find('tbody tr:last');
+    var clonedLastTR = lastTR.clone(true, true);
+    var latestRowCount = (trLength + 1);
 
-      clonedLastTR.attr('id', 'product-row-' + latestRowCount)
-      clonedLastTR.find('.product-purchase-select')
-        .attr('id', 'product-purchase-select-' + latestRowCount)
-        .attr('name', 'product-purchase-select-' + latestRowCount);
-      clonedLastTR.find('.product-price')
-        .attr('id', 'product-price-' + latestRowCount)
-        .attr('name', 'product-price-' + latestRowCount)
-        .val('');
-      clonedLastTR.find('.product-tax')
-        .attr('id', 'product-tax-' + latestRowCount)
-        .attr('name', 'product-tax-' + latestRowCount)
-        .val('');
-      clonedLastTR.insertAfter(lastTR);
-    })
+    clonedLastTR.attr('id', 'product-row-' + latestRowCount)
+    clonedLastTR.find('.product-purchase-select')
+      .attr('id', 'product-purchase-select-' + latestRowCount)
+      .attr('name', 'product-purchase-select-' + latestRowCount);
+    clonedLastTR.find('.product-price')
+      .attr('id', 'product-price-' + latestRowCount)
+      .attr('name', 'product-price-' + latestRowCount)
+      .val('');
+    clonedLastTR.find('.product-tax')
+      .attr('id', 'product-tax-' + latestRowCount)
+      .attr('name', 'product-tax-' + latestRowCount)
+      .val('');
+    clonedLastTR.insertAfter(lastTR);
+  })
 
-    $(".btn-add-payment-line-item").on('click', function(e) {
-      e.preventDefault();
+  // Add New Payment Line Items
+  $(".btn-add-payment-line-item").on('click', function(e) {
+    e.preventDefault();
 
-      var trLength = $(this).parent().next().find('tbody tr').length;
-      var lastTR = $(this).parent().next().find('tbody tr:last');
-      var clonedLastTR = lastTR.clone(true, true);
-      var latestRowCount = (trLength + 1);
+    var trLength = $(this).parent().next().find('tbody tr').length;
+    var lastTR = $(this).parent().next().find('tbody tr:last');
+    var clonedLastTR = lastTR.clone(true, true);
+    var latestRowCount = (trLength + 1);
 
-      clonedLastTR.find('.product-payment-select')
-        .attr('id', 'product-payment-select-' + latestRowCount)
-        .attr('name', 'product-payment-select-' + latestRowCount);
-      clonedLastTR.find('.product-amount')
-        .attr('id', 'product-amount-' + latestRowCount)
-        .attr('name', 'product-amount-' + latestRowCount)
-        .val('');
-      clonedLastTR.insertAfter(lastTR);
-    })
+    clonedLastTR.find('.product-payment-select')
+      .attr('id', 'product-payment-select-' + latestRowCount)
+      .attr('name', 'product-payment-select-' + latestRowCount);
+    clonedLastTR.find('.product-amount')
+      .attr('id', 'product-amount-' + latestRowCount)
+      .attr('name', 'product-amount-' + latestRowCount)
+      .val('');
+    clonedLastTR.insertAfter(lastTR);
+  })
 });
