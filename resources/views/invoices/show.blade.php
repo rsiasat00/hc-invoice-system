@@ -26,11 +26,17 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        
 
                         @include('invoices.partials.view-invoice-information')
                         @include('invoices.partials.view-purchase-line-items')
                         @include('invoices.partials.view-payment-line-items')
+
+                        <h6 class="heading-small text-muted mb-4">{{ __('Overall Total') }}</h6>
+                        <div class="pl-lg-4">
+                            <div class="form-group">
+                                <span class="form-control form-control-alternative">{{ $overallTotal }}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

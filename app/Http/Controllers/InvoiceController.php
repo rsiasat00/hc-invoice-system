@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Invoice;
 use App\Product;
 use App\Order;
+use App\PaymentLineItem;
 use Illuminate\Http\Request;
 use App\Http\Requests\InvoiceRequest;
 use App\Http\Requests\InvoiceRequestUpdate;
@@ -29,7 +30,13 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('invoices.create', ['products' => Product::orderBy('name', 'ASC')->get(), 'orders' => collect(new Order)]);
+        return view('invoices.create',
+            [
+                'products' => Product::orderBy('name', 'ASC')->get(),
+                'purchaseLineItems' => collect(new Order),
+                'paymentLineItems' => collect(new PaymentLineItem)
+            ]
+        );
     }
 
     /**
@@ -54,7 +61,34 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        return view('invoices.show', ['invoice' => $invoice, 'products' => Product::orderBy('name', 'ASC')->get(), 'orders' => Order::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get()]);
+        $purchaseLineItems = Order::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get();
+        $paymentLineItems = PaymentLineItem::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get();
+        $paymentLineItemsTotal = 0;
+        $purchaseLineItemsTotal = 0;
+        
+        foreach ($purchaseLineItems as $key => $value) {
+            $purchaseLineItemsTotal += ($value->price + $value->tax) * $value->quantity;
+        }
+
+        foreach ($paymentLineItems as $key => $value) {
+            $paymentLineItemsTotal += $value->amount;
+        }
+
+        $purchaseLineItemsTotal = number_format($purchaseLineItemsTotal, 2);
+        $paymentLineItemsTotal = number_format($paymentLineItemsTotal, 2);
+        $overallTotal = number_format($purchaseLineItemsTotal + $paymentLineItemsTotal, 2);
+
+        return view('invoices.show', 
+            [
+                'invoice' => $invoice,
+                'products' => Product::orderBy('name', 'ASC')->get(),
+                'purchaseLineItems' => $purchaseLineItems,
+                'paymentLineItems' => $paymentLineItems,
+                'purchaseLineItemsTotal' => $purchaseLineItemsTotal,
+                'paymentLineItemsTotal' => $paymentLineItemsTotal,
+                'overallTotal' => $overallTotal,
+            ]
+        );
     }
 
     /**
@@ -65,7 +99,14 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        return view('invoices.edit', ['invoice' => $invoice, 'products' => Product::orderBy('name', 'ASC')->get(), 'orders' => Order::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get()]);
+        return view('invoices.edit',
+            [
+                'invoice' => $invoice,
+                'products' => Product::orderBy('name', 'ASC')->get(),
+                'purchaseLineItems' => Order::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get(),
+                'paymentLineItems' => PaymentLineItem::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get()
+            ]
+        );
     }
 
     /**
@@ -105,21 +146,20 @@ class InvoiceController extends Controller
         $productTax = $request->productTax;
         $productQuantity = $request->productQuantity;
         
-        $oldOrders = Order::where('invoice_id', $invoice->id)->get();
-        for ($i=0; $i < count($oldOrders); $i++) { 
-            $oldOrders[$i]->delete();
+        $oldPurchaseLineItems = Order::where('invoice_id', $invoice->id)->get();
+        for ($i=0; $i < count($oldPurchaseLineItems); $i++) { 
+            $oldPurchaseLineItems[$i]->delete();
         }
 
         for ($x = 0; $x < $productPurchaseCtr; $x++) {
             
-            $newOrder = new Order();
-            $newOrder->invoice_id = $invoice->id;
-            $newOrder->product_id = $productPurchaseSelect[$x];
-            $newOrder->price = $productPrice[$x];
-            $newOrder->tax = $productTax[$x];
-            $newOrder->quantity = $productQuantity[$x];
-            $newOrder->order_date = $invoice->created_at;
-            $newOrder->save();
+            $newPurchaseLineItem = new Order();
+            $newPurchaseLineItem->invoice_id = $invoice->id;
+            $newPurchaseLineItem->product_id = $productPurchaseSelect[$x];
+            $newPurchaseLineItem->price = $productPrice[$x];
+            $newPurchaseLineItem->tax = $productTax[$x];
+            $newPurchaseLineItem->quantity = $productQuantity[$x];
+            $newPurchaseLineItem->save();
 
         }
 
@@ -130,8 +170,18 @@ class InvoiceController extends Controller
         $productPaymentSelect = $request->productPaymentSelect;
         $productPaymentCtr = count($request->productPaymentSelect);
         
-        for ($x = 0; $x < $productPaymentCtr; $x++) {
+        $oldPaymentLineItems = PaymentLineItem::where('invoice_id', $invoice->id)->get();
+        for ($i=0; $i < count($oldPaymentLineItems); $i++) { 
+            $oldPaymentLineItems[$i]->delete();
+        }
 
+        $productAmount = $request->productAmount;
+        for ($x = 0; $x < $productPaymentCtr; $x++) {
+            $newPaymentLineItem = new PaymentLineItem();
+            $newPaymentLineItem->invoice_id = $invoice->id;
+            $newPaymentLineItem->payment_type = $productPaymentSelect[$x];
+            $newPaymentLineItem->amount = $productAmount[$x];
+            $newPaymentLineItem->save();
         }
 
         return true;

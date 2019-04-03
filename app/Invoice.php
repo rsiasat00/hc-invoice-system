@@ -22,4 +22,8 @@ class Invoice extends Model
     public function orders() {
         return $this->hasMany('App\Order');
     }
+
+    public function payment_line_items() {
+        return $this->hasMany('App\PaymentLineItem');
+    }
 }

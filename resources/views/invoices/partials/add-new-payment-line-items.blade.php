@@ -16,23 +16,43 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-                <select class="custom-select product-payment-select" name="productPaymentSelect[]" id="product-payment-select-1">
-                  <option value='' selected>Choose...</option>
-                  <option value="cash">Cash</option>
-                  <option value="check">Check</option>
-                  <option value="credit">Credit</option>
-                </select>
-            </td>
-            <td>
-                <input type="number" name="productAmount[]" id="input-product-amount-1" class="form-control form-control-alternative product-amount" placeholder="Amount" value="" required>
-            </td>
-            
-            <td>
-                <button type="button" class="btn btn-outline-danger btn-block btn-remove-payment-line-item">Remove</button>
-            </td>
-          </tr>
+          @if($paymentLineItems->isEmpty())
+            <tr>
+              <td>
+                  <select class="custom-select product-payment-select" name="productPaymentSelect[]" id="product-payment-select-1">
+                    <option value="Cash" selected>Cash</option>
+                    <option value="Check">Check</option>
+                    <option value="Credit">Credit</option>
+                  </select>
+              </td>
+              <td>
+                  <input type="number" name="productAmount[]" id="input-product-amount-1" class="form-control form-control-alternative product-amount" placeholder="Amount" value="" required>
+              </td>
+              
+              <td>
+                  <button type="button" class="btn btn-outline-danger btn-block btn-remove-payment-line-item">Remove</button>
+              </td>
+            </tr>
+          @else
+            @foreach ($paymentLineItems as $paymentLineItem)
+              <tr>
+                <td>
+                    <select class="custom-select product-payment-select" name="productPaymentSelect[]" id="product-payment-select-1">
+                      <option value="Cash" {{ $paymentLineItem->payment_type == 'Cash' ? 'selected' : '' }}>Cash</option>
+                      <option value="Check" {{ $paymentLineItem->payment_type == 'Check' ? 'selected' : '' }}>Check</option>
+                      <option value="Credit" {{ $paymentLineItem->payment_type == 'Credit' ? 'selected' : '' }}>Credit</option>
+                    </select>
+                </td>
+                <td>
+                <input type="number" name="productAmount[]" id="input-product-amount-1" class="form-control form-control-alternative product-amount" placeholder="Amount" value="{{ $paymentLineItem->amount }}" required>
+                </td>
+                
+                <td>
+                    <button type="button" class="btn btn-outline-danger btn-block btn-remove-payment-line-item">Remove</button>
+                </td>
+              </tr>
+            @endforeach
+          @endif
           
         </tbody>
       </table>

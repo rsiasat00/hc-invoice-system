@@ -19,7 +19,7 @@
         </thead>
         <tbody>
           
-        @if($orders->isEmpty())
+        @if($purchaseLineItems->isEmpty())
           <tr>
             <td>
                 <select class="custom-select product-purchase-select" name="productPurchaseSelect[]" id="product-purchase-select-1">
@@ -47,27 +47,27 @@
             </td>
           </tr>
         @else
-          @foreach ($orders as $order)
+          @foreach ($purchaseLineItems as $purchaseLineItem)
             <tr>
               <td>
                   <select class="custom-select product-purchase-select" name="productPurchaseSelect[]" id="product-purchase-select-1">
                       <option value=''>Choose...</option>
                       
                       @foreach ($products as $product)
-                        <option {{$product->id == $order->product->id ? 'selected' : '' }} value="{{ $product->id }}" price="{{ $product->price }}" tax="{{ $product->tax }}">{{ $product->name }}</option>
+                        <option {{$product->id == $purchaseLineItem->product->id ? 'selected' : '' }} value="{{ $product->id }}" price="{{ $product->price }}" tax="{{ $product->tax }}">{{ $product->name }}</option>
                       @endforeach
                   </select>
               </td>
               <td>
-              <input type="number" name="productPrice[]" id="input-product-price-1" class="form-control form-control-alternative product-price" placeholder="Price" value="{{ $order->price }}" required>
+              <input type="number" name="productPrice[]" id="input-product-price-1" class="form-control form-control-alternative product-price" placeholder="Price" value="{{ $purchaseLineItem->price }}" required>
               </td>
               
               <td>
-                  <input type="number" name="productTax[]" id="input-product-tax-1" class="form-control form-control-alternative product-tax" placeholder="Tax" value="{{ $order->tax }}" required>
+                  <input type="number" name="productTax[]" id="input-product-tax-1" class="form-control form-control-alternative product-tax" placeholder="Tax" value="{{ $purchaseLineItem->tax }}" required>
               </td>
               
               <td>
-                  <input type="number" name="productQuantity[]" id="input-product-quantity-1" class="form-control form-control-alternative product-quantity" placeholder="Quantity" value="{{ $order->quantity }}" required>
+                  <input type="number" name="productQuantity[]" id="input-product-quantity-1" class="form-control form-control-alternative product-quantity" placeholder="Quantity" value="{{ $purchaseLineItem->quantity }}" required>
               </td>
 
               <td>

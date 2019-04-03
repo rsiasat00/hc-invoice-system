@@ -106,7 +106,8 @@ $(document).ready(function() {
 
     clonedLastTR.find('.product-payment-select')
       .attr('id', 'product-payment-select-' + latestRowCount)
-      .attr('name', 'productPaymentSelect[]');
+      .attr('name', 'productPaymentSelect[]')
+      .val('Cash');
     clonedLastTR.find('.product-amount')
       .attr('id', 'product-amount-' + latestRowCount)
       .attr('name', 'productAmount[]')
