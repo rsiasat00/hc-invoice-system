@@ -35,6 +35,12 @@
             @include('layouts.footers.guest')
         @endguest
 
+        {{-- Sweet Alert JS --}}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+        <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>

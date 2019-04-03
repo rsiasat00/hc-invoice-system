@@ -36,7 +36,7 @@
             </td>
             
             <td>
-                <button type="button" class="btn btn-danger btn-block">Remove</button>
+                <button type="button" class="btn btn-danger btn-block btn-remove-purchase-line-item">Remove</button>
             </td>
           </tr>
 

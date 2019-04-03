@@ -17,7 +17,6 @@
         </thead>
         <tbody>
           <tr>
-
             <td>
                 <select class="custom-select" id="product_payment_type_1">
                   <option selected>Choose...</option>
@@ -31,10 +30,10 @@
             </td>
             
             <td>
-                <button type="button" class="btn btn-outline-danger btn-block">Remove</button>
+                <button type="button" class="btn btn-outline-danger btn-block btn-remove-payment-line-item">Remove</button>
             </td>
           </tr>
-
+          
         </tbody>
       </table>
   
