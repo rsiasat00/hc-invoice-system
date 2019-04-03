@@ -28,7 +28,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('invoices.create', ['products' => Product::all()]);
+        return view('invoices.create', ['products' => Product::orderBy('name', 'ASC')->get()]);
     }
 
     /**
@@ -62,7 +62,7 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        return view('invoices.edit', compact('invoice'));
+        return view('invoices.edit', ['invoice' => $invoice, 'products' => Product::orderBy('name', 'ASC')->get()]);
     }
 
     /**

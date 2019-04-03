@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4 mt-4">
     <h6 class="heading-small text-muted pt-3" >{{ __('Add New Payment Line Items') }}</h6>
 
-    <button type="button" class="btn btn-outline-primary">Add Payment Line Item</button>
+    <button type="button" class="btn btn-outline-primary btn-add-payment-line-item">Add Payment Line Item</button>
 </div>
 
 
@@ -18,7 +18,7 @@
         <tbody>
           <tr>
             <td>
-                <select class="custom-select" id="product_payment_type_1">
+                <select class="custom-select product-payment-select" name="product-payment-select" id="product-payment-select-1">
                   <option selected>Choose...</option>
                   <option value="cash">Cash</option>
                   <option value="check">Check</option>
@@ -26,7 +26,7 @@
                 </select>
             </td>
             <td>
-                <input type="number" name="product_amount_1" id="input-product-amount-1" class="form-control form-control-alternative" placeholder="Amount" value="" required>
+                <input type="number" name="product-amount-1" id="input-product-amount-1" class="form-control form-control-alternative product-amount" placeholder="Amount" value="" required>
             </td>
             
             <td>
