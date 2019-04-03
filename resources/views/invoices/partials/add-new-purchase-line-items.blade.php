@@ -20,7 +20,7 @@
         <tr id="product-row-1">
 
             <td>
-                <select class="custom-select product-purchase-select" name="product-purchase-select" id="product-purchase-select-1">
+                <select class="custom-select product-purchase-select" name="product-purchase-select-1" id="product-purchase-select-1">
                     <option selected>Choose...</option>
                     
                     @foreach ($products as $product)

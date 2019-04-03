@@ -18,7 +18,7 @@
         <tbody>
           <tr>
             <td>
-                <select class="custom-select product-payment-select" name="product-payment-select" id="product-payment-select-1">
+                <select class="custom-select product-payment-select" name="product-payment-select-1" id="product-payment-select-1">
                   <option selected>Choose...</option>
                   <option value="cash">Cash</option>
                   <option value="check">Check</option>
