@@ -23,10 +23,16 @@
     </div>
     <div class="form-group{{ $errors->has('invoice_date') ? ' has-danger' : '' }}">
         <label class="form-control-label" for="input-invoice-date">{{ __('Invoice Date') }}&nbsp;<span class="text-danger">*</span></label>
-        <input type="date" name="invoice_date" id="input-invoice-date" class="form-control form-control-alternative{{ $errors->has('invoice_date') ? ' is-invalid' : '' }}" placeholder="{{ __('Invoice Date') }}" value="{{ old('invoice_date', !empty($invoice) ? $invoice->invoice_date : '') }}" required>
-
+        
+        <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+            </div>
+            <input type="text" name="invoice_date" data-date-format="yyyy-mm-dd" id="input-invoice-date" class="form-control form-control-alternative{{ $errors->has('invoice_date') ? ' is-invalid' : '' }} datepicker" placeholder="{{ __('Invoice Date') }}" value="{{ old('invoice_date', !empty($invoice) ? \Carbon\Carbon::parse($invoice->invoice_date)->format('Y-m-d') : '') }}" required>
+        </div>
+        
         @if ($errors->has('invoice_date'))
-            <span class="invalid-feedback" role="alert">
+            <span class="invalid-feedback d-block" role="alert">
                 <strong>{{ $errors->first('invoice_date') }}</strong>
             </span>
         @endif
@@ -45,10 +51,16 @@
 
     <div class="form-group{{ $errors->has('due_date') ? ' has-danger' : '' }}">
         <label class="form-control-label" for="input-due-date">{{ __('Due Date') }}&nbsp;<span class="text-danger">*</span></label>
-        <input type="date" name="due_date" id="input-due-date" class="form-control form-control-alternative{{ $errors->has('due_date') ? ' is-invalid' : '' }}" placeholder="{{ __('Due Date') }}" value="{{ old('due_date', !empty($invoice) ? $invoice->due_date : '') }}" required>
+
+        <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+            </div>
+            <input type="text" name="due_date" data-date-format="yyyy-mm-dd" id="input-due-date" class="form-control form-control-alternative{{ $errors->has('due_date') ? ' is-invalid' : '' }} datepicker" placeholder="{{ __('Due Date') }}" value="{{ old('due_date', !empty($invoice) ? \Carbon\Carbon::parse($invoice->due_date)->format('Y-m-d') : '') }}" required>
+        </div>
 
         @if ($errors->has('due_date'))
-            <span class="invalid-feedback" role="alert">
+            <span class="invalid-feedback d-block" role="alert">
                 <strong>{{ $errors->first('due_date') }}</strong>
             </span>
         @endif
