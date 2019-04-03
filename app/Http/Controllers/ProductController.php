@@ -89,4 +89,9 @@ class ProductController extends Controller
 
         return redirect()->route('product.index')->withStatus(__('Product successfully deleted.'));
     }
+
+    public function retrieveAllProducts()
+    {
+        
+    }
 }
