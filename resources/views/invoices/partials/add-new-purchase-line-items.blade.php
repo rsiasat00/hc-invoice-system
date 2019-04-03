@@ -31,15 +31,15 @@
                 </select>
             </td>
             <td>
-                <input type="number" name="productPrice[]" id="input-product-price-1" class="form-control form-control-alternative product-price" placeholder="Price" value="" required>
+                <input type="number" step=".01" name="productPrice[]" id="input-product-price-1" class="form-control form-control-alternative product-price" placeholder="Price" value="" required>
             </td>
             
             <td>
-                <input type="number" name="productTax[]" id="input-product-tax-1" class="form-control form-control-alternative product-tax" placeholder="Tax" value="" required>
+                <input type="number" step=".01" name="productTax[]" id="input-product-tax-1" class="form-control form-control-alternative product-tax" placeholder="Tax" value="" required>
             </td>
             
             <td>
-                <input type="number" name="productQuantity[]" id="input-product-quantity-1" class="form-control form-control-alternative product-quantity" placeholder="Quantity" value="" required>
+                <input type="number" step=".01" name="productQuantity[]" id="input-product-quantity-1" class="form-control form-control-alternative product-quantity" placeholder="Quantity" value="" required>
             </td>
 
             <td>
@@ -59,15 +59,15 @@
                   </select>
               </td>
               <td>
-              <input type="number" name="productPrice[]" id="input-product-price-1" class="form-control form-control-alternative product-price" placeholder="Price" value="{{ $purchaseLineItem->price }}" required>
+              <input type="number" step=".01" name="productPrice[]" id="input-product-price-1" class="form-control form-control-alternative product-price" placeholder="Price" value="{{ $purchaseLineItem->price }}" required>
               </td>
               
               <td>
-                  <input type="number" name="productTax[]" id="input-product-tax-1" class="form-control form-control-alternative product-tax" placeholder="Tax" value="{{ $purchaseLineItem->tax }}" required>
+                  <input type="number" step=".01" name="productTax[]" id="input-product-tax-1" class="form-control form-control-alternative product-tax" placeholder="Tax" value="{{ $purchaseLineItem->tax }}" required>
               </td>
               
               <td>
-                  <input type="number" name="productQuantity[]" id="input-product-quantity-1" class="form-control form-control-alternative product-quantity" placeholder="Quantity" value="{{ $purchaseLineItem->quantity }}" required>
+                  <input type="number" step=".01" name="productQuantity[]" id="input-product-quantity-1" class="form-control form-control-alternative product-quantity" placeholder="Quantity" value="{{ $purchaseLineItem->quantity }}" required>
               </td>
 
               <td>

@@ -15,7 +15,7 @@ class AddUserInvoiceForeignKey extends Migration
     {
         Schema::table('invoices', function (Blueprint $table) {
             $table->foreign('customer_id')
-                  ->references('id')->on('users');
+                  ->references('id')->on('users')->onDelete('cascade');;
         });
     }
 

@@ -16,7 +16,7 @@ class CreatePaymentLineItemsTable extends Migration
         Schema::create('payment_line_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('invoice_id')->nullable();
-            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');;
             $table->string("payment_type")->nullable();
             $table->decimal("amount", 8,2)->default(0.00);
             $table->timestamps();

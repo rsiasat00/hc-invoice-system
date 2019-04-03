@@ -13,7 +13,7 @@
       
       <div class="form-group{{ $errors->has('price') ? ' has-danger' : '' }}">
           <label class="form-control-label" for="input-price">{{ __('Price') }}&nbsp;<span class="text-danger">*</span></label>
-          <input type="number" name="price" id="input-price" class="form-control form-control-alternative{{ $errors->has('price') ? ' is-invalid' : '' }}" placeholder="{{ __('Price') }}" value="{{ old('price', !empty($product) ? $product->price : '') }}" required>
+          <input type="number" step=".01" name="price" id="input-price" class="form-control form-control-alternative{{ $errors->has('price') ? ' is-invalid' : '' }}" placeholder="{{ __('Price') }}" value="{{ old('price', !empty($product) ? $product->price : '') }}" required>
 
           @if ($errors->has('price'))
               <span class="invalid-feedback" role="alert">
@@ -24,7 +24,7 @@
 
       <div class="form-group{{ $errors->has('tax') ? ' has-danger' : '' }}">
           <label class="form-control-label" for="input-tax">{{ __('Tax') }}&nbsp;<span class="text-danger">*</span></label>
-          <input type="number" name="tax" id="input-tax" class="form-control form-control-alternative{{ $errors->has('tax') ? ' is-invalid' : '' }}" placeholder="{{ __('Tax') }}" value="{{ old('tax', !empty($product) ? $product->tax : '') }}" required>
+          <input type="number" step=".01" name="tax" id="input-tax" class="form-control form-control-alternative{{ $errors->has('tax') ? ' is-invalid' : '' }}" placeholder="{{ __('Tax') }}" value="{{ old('tax', !empty($product) ? $product->tax : '') }}" required>
 
           @if ($errors->has('tax'))
               <span class="invalid-feedback" role="alert">

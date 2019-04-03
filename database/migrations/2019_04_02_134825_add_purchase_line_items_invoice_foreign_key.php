@@ -15,9 +15,9 @@ class AddPurchaseLineItemsInvoiceForeignKey extends Migration
     {
         Schema::table('purchase_line_items', function (Blueprint $table) {
             $table->foreign('invoice_id')
-                    ->references('id')->on('invoices');
+                    ->references('id')->on('invoices')->onDelete('cascade');;
             $table->foreign('product_id')
-                    ->references('id')->on('products');
+                    ->references('id')->on('products')->onDelete('cascade');;
         });
     }
 

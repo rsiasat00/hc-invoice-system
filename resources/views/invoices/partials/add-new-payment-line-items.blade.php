@@ -26,7 +26,7 @@
                   </select>
               </td>
               <td>
-                  <input type="number" name="productAmount[]" id="input-product-amount-1" class="form-control form-control-alternative product-amount" placeholder="Amount" value="" required>
+                  <input type="number" step=".01" name="productAmount[]" id="input-product-amount-1" class="form-control form-control-alternative product-amount" placeholder="Amount" value="" required>
               </td>
               
               <td>
@@ -44,7 +44,7 @@
                     </select>
                 </td>
                 <td>
-                <input type="number" name="productAmount[]" id="input-product-amount-1" class="form-control form-control-alternative product-amount" placeholder="Amount" value="{{ $paymentLineItem->amount }}" required>
+                <input type="number" step=".01" name="productAmount[]" id="input-product-amount-1" class="form-control form-control-alternative product-amount" placeholder="Amount" value="{{ $paymentLineItem->amount }}" required>
                 </td>
                 
                 <td>
