@@ -17,14 +17,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+        <tr id="product-row-1">
 
             <td>
                 <select class="custom-select" id="product_1">
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                    <option selected>Choose...</option>
+                    @foreach ($products as $product)
+                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                    @endforeach
                 </select>
             </td>
             <td>
@@ -38,7 +38,7 @@
             <td>
                 <button type="button" class="btn btn-danger btn-block btn-remove-purchase-line-item">Remove</button>
             </td>
-          </tr>
+        </tr>
 
         </tbody>
       </table>

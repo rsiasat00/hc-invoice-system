@@ -24,5 +24,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::resource('invoice', 'InvoiceController');
 	Route::resource('product', 'ProductController');
+	Route::get('retrieve-products', [ 'uses' => 'ProfileController@retrieveAllProducts']);
 });
 

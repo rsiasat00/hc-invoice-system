@@ -36,4 +36,9 @@ $(document).ready(function() {
     })
   });
 
+    // Add Invoice Sidebar Click
+    $('a.sidebar-add-invoice').on('click', function(e) {
+        e.preventDefault();
+    });
+
 });
