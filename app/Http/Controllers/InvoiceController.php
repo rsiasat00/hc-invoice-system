@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Invoice;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\InvoiceRequest;
 use App\Http\Requests\InvoiceRequestUpdate;
@@ -27,7 +28,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('invoices.create');
+        return view('invoices.create', ['products' => Product::all()]);
     }
 
     /**
