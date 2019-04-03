@@ -17,7 +17,7 @@
                                 <form action="{{ route('product.destroy', $product) }}" method="post" class="d-inline-block">
                                     @csrf
                                     @method('delete')
-                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirm('{{ __("Are you sure you want to delete this product?") }}') ? this.parentElement.submit() : ''">
+                                    <button type="button" class="btn btn-sm btn-danger btn-delete-record">
                                         {{ __('Delete') }}
                                     </button>
                                 </form>

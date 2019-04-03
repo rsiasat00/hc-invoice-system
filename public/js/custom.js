@@ -1,5 +1,23 @@
 $(document).ready(function() {
 
+  // Remove Record
+  $(".btn-delete-record").on('click', function(e) {
+    e.preventDefault();
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#5e72e4',
+      cancelButtonColor: '#f5365c',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.parentElement.submit()
+      }
+    })
+  })
   // Remove Purchase / Payment Line Items
   $(".btn-remove-purchase-line-item, .btn-remove-payment-line-item").on('click', function(e){
     e.preventDefault();

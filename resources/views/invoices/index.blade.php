@@ -62,7 +62,7 @@
                                                         
                                                         <a class="dropdown-item" href="{{ route('invoice.show', $invoice) }}">{{ __('View') }}</a>
                                                         <a class="dropdown-item" href="{{ route('invoice.edit', $invoice) }}">{{ __('Edit') }}</a>
-                                                        <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this invoice?") }}') ? this.parentElement.submit() : ''">
+                                                        <button type="button" class="dropdown-item btn-delete-record">
                                                             {{ __('Delete') }}
                                                         </button>
                                                     </form>

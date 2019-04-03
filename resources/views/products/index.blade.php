@@ -57,7 +57,7 @@
                                                         
                                                         <a class="dropdown-item" href="{{ route('product.show', $product) }}">{{ __('View') }}</a>
                                                         <a class="dropdown-item" href="{{ route('product.edit', $product) }}">{{ __('Edit') }}</a>
-                                                        <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this product?") }}') ? this.parentElement.submit() : ''">
+                                                        <button type="button" class="dropdown-item btn-delete-record">
                                                             {{ __('Delete') }}
                                                         </button>
                                                     </form>
