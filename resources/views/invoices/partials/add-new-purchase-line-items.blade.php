@@ -13,34 +13,69 @@
             <th scope="col">Product</th>
             <th scope="col">Price</th>
             <th scope="col">Tax</th>
+            <th scope="col">Quantity</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-        <tr id="product-row-1">
-
+          
+        @if($orders->isEmpty())
+          <tr>
             <td>
-                <select class="custom-select product-purchase-select" name="product-purchase-select-1" id="product-purchase-select-1">
-                    <option selected>Choose...</option>
+                <select class="custom-select product-purchase-select" name="productPurchaseSelect[]" id="product-purchase-select-1">
+                    <option value='' selected>Choose...</option>
                     
                     @foreach ($products as $product)
-                <option value="{{ $product->id }}" price="{{ $product->price }}" tax="{{ $product->tax }}">{{ $product->name }}</option>
+                      <option value="{{ $product->id }}" price="{{ $product->price }}" tax="{{ $product->tax }}">{{ $product->name }}</option>
                     @endforeach
                 </select>
             </td>
             <td>
-                <input type="number" name="product-price-1" id="input-product-price-1" class="form-control form-control-alternative product-price" placeholder="Price" value="" required>
+                <input type="number" name="productPrice[]" id="input-product-price-1" class="form-control form-control-alternative product-price" placeholder="Price" value="" required>
             </td>
             
             <td>
-                <input type="number" name="product-tax-1" id="input-product-tax-1" class="form-control form-control-alternative product-tax" placeholder="Tax" value="" required>
+                <input type="number" name="productTax[]" id="input-product-tax-1" class="form-control form-control-alternative product-tax" placeholder="Tax" value="" required>
             </td>
             
+            <td>
+                <input type="number" name="productQuantity[]" id="input-product-quantity-1" class="form-control form-control-alternative product-quantity" placeholder="Quantity" value="" required>
+            </td>
+
             <td>
                 <button type="button" class="btn btn-danger btn-block btn-remove-purchase-line-item">Remove</button>
             </td>
-        </tr>
+          </tr>
+        @else
+          @foreach ($orders as $order)
+            <tr>
+              <td>
+                  <select class="custom-select product-purchase-select" name="productPurchaseSelect[]" id="product-purchase-select-1">
+                      <option value=''>Choose...</option>
+                      
+                      @foreach ($products as $product)
+                        <option {{$product->id == $order->product->id ? 'selected' : '' }} value="{{ $product->id }}" price="{{ $product->price }}" tax="{{ $product->tax }}">{{ $product->name }}</option>
+                      @endforeach
+                  </select>
+              </td>
+              <td>
+              <input type="number" name="productPrice[]" id="input-product-price-1" class="form-control form-control-alternative product-price" placeholder="Price" value="{{ $order->price }}" required>
+              </td>
+              
+              <td>
+                  <input type="number" name="productTax[]" id="input-product-tax-1" class="form-control form-control-alternative product-tax" placeholder="Tax" value="{{ $order->tax }}" required>
+              </td>
+              
+              <td>
+                  <input type="number" name="productQuantity[]" id="input-product-quantity-1" class="form-control form-control-alternative product-quantity" placeholder="Quantity" value="{{ $order->quantity }}" required>
+              </td>
 
+              <td>
+                  <button type="button" class="btn btn-danger btn-block btn-remove-purchase-line-item">Remove</button>
+              </td>
+            </tr>
+          @endforeach
+        @endif
         </tbody>
       </table>
   

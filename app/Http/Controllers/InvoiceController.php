@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Invoice;
 use App\Product;
+use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Requests\InvoiceRequest;
 use App\Http\Requests\InvoiceRequestUpdate;
@@ -18,7 +19,7 @@ class InvoiceController extends Controller
      */
     public function index(Invoice $model)
     {
-        return view('invoices.index', ['invoices' => $model->orderBy('invoice_number', 'DESC')->paginate(15)]);
+        return view('invoices.index', ['invoices' => $model->orderBy('id', 'DESC')->paginate(15)]);
     }
 
     /**
@@ -28,7 +29,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('invoices.create', ['products' => Product::orderBy('name', 'ASC')->get()]);
+        return view('invoices.create', ['products' => Product::orderBy('name', 'ASC')->get(), 'orders' => collect(new Order)]);
     }
 
     /**
@@ -39,7 +40,9 @@ class InvoiceController extends Controller
      */
     public function store(InvoiceRequest $request, Invoice $model)
     {
-        $model->create($request->merge(['customer_id' => Auth::user()->id])->all());
+        $invoice = $model->create($request->merge(['customer_id' => Auth::user()->id])->all());
+        $this->createOrUpdatePurchaseLineItems($request, $invoice);
+        $this->createOrUpdatePaymentLineItems($request, $invoice);
         return redirect()->route('invoice.index')->withStatus(__('Invoice successfully created.'));
     }
 
@@ -51,7 +54,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        return view('invoices.show', compact('invoice'));
+        return view('invoices.show', ['invoice' => $invoice, 'products' => Product::orderBy('name', 'ASC')->get(), 'orders' => Order::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get()]);
     }
 
     /**
@@ -62,7 +65,7 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        return view('invoices.edit', ['invoice' => $invoice, 'products' => Product::orderBy('name', 'ASC')->get()]);
+        return view('invoices.edit', ['invoice' => $invoice, 'products' => Product::orderBy('name', 'ASC')->get(), 'orders' => Order::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get()]);
     }
 
     /**
@@ -75,7 +78,8 @@ class InvoiceController extends Controller
     public function update(InvoiceRequestUpdate $request, Invoice $invoice)
     {
         $invoice->update($request->merge(['customer_id' => Auth::user()->id])->all());
-
+        $this->createOrUpdatePurchaseLineItems($request, $invoice);
+        $this->createOrUpdatePaymentLineItems($request, $invoice);
         return redirect()->route('invoice.index')->withStatus(__('Invoice successfully updated.'));
     }
 
@@ -90,5 +94,46 @@ class InvoiceController extends Controller
         $invoice->delete();
 
         return redirect()->route('invoice.index')->withStatus(__('Invoice successfully deleted.'));
+    }
+
+    public function createOrUpdatePurchaseLineItems($request, $invoice) {
+
+        $productPurchaseSelect = $request->productPurchaseSelect;
+        $productPurchaseCtr = count($request->productPurchaseSelect);
+        
+        $productPrice = $request->productPrice;
+        $productTax = $request->productTax;
+        $productQuantity = $request->productQuantity;
+        
+        $oldOrders = Order::where('invoice_id', $invoice->id)->get();
+        for ($i=0; $i < count($oldOrders); $i++) { 
+            $oldOrders[$i]->delete();
+        }
+
+        for ($x = 0; $x < $productPurchaseCtr; $x++) {
+            
+            $newOrder = new Order();
+            $newOrder->invoice_id = $invoice->id;
+            $newOrder->product_id = $productPurchaseSelect[$x];
+            $newOrder->price = $productPrice[$x];
+            $newOrder->tax = $productTax[$x];
+            $newOrder->quantity = $productQuantity[$x];
+            $newOrder->order_date = $invoice->created_at;
+            $newOrder->save();
+
+        }
+
+        return true;
+    }
+
+    public function createOrUpdatePaymentLineItems($request, $invoice) {
+        $productPaymentSelect = $request->productPaymentSelect;
+        $productPaymentCtr = count($request->productPaymentSelect);
+        
+        for ($x = 0; $x < $productPaymentCtr; $x++) {
+
+        }
+
+        return true;
     }
 }

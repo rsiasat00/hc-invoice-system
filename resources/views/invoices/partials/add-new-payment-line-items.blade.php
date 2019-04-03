@@ -18,15 +18,15 @@
         <tbody>
           <tr>
             <td>
-                <select class="custom-select product-payment-select" name="product-payment-select-1" id="product-payment-select-1">
-                  <option selected>Choose...</option>
+                <select class="custom-select product-payment-select" name="productPaymentSelect[]" id="product-payment-select-1">
+                  <option value='' selected>Choose...</option>
                   <option value="cash">Cash</option>
                   <option value="check">Check</option>
                   <option value="credit">Credit</option>
                 </select>
             </td>
             <td>
-                <input type="number" name="product-amount-1" id="input-product-amount-1" class="form-control form-control-alternative product-amount" placeholder="Amount" value="" required>
+                <input type="number" name="productAmount[]" id="input-product-amount-1" class="form-control form-control-alternative product-amount" placeholder="Amount" value="" required>
             </td>
             
             <td>

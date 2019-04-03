@@ -147,22 +147,6 @@
                         </ul>
                     </div>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#orders" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="orders">
-                        <i class="ni ni-basket text-primary"></i> {{ __('Orders') }}
-                    </a>
-
-                    <div class="collapse" id="orders">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    {{ __('Order Management') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>

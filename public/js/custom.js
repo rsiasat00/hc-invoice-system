@@ -62,8 +62,9 @@ $(document).ready(function() {
     productPrice = selectedProduct.attr('price');
     productTax = selectedProduct.attr('tax');
     
-    $(this).parent().parent().find("input[name^='product-price']").val(productPrice);
-    $(this).parent().parent().find("input[name^='product-tax']").val(productTax);
+    $(this).parent().parent().find("input[name^='productPrice']").val(productPrice);
+    $(this).parent().parent().find("input[name^='productTax']").val(productTax);
+    $(this).parent().parent().find("input[name^='productQuantity']").val(productPrice ? 1 : '');
   })
 
   // Add New Purchase Line Items
@@ -75,17 +76,21 @@ $(document).ready(function() {
     var clonedLastTR = lastTR.clone(true, true);
     var latestRowCount = (trLength + 1);
 
-    clonedLastTR.attr('id', 'product-row-' + latestRowCount)
     clonedLastTR.find('.product-purchase-select')
       .attr('id', 'product-purchase-select-' + latestRowCount)
-      .attr('name', 'product-purchase-select-' + latestRowCount);
+      .attr('name', 'productPurchaseSelect[]')
+      .val('');
     clonedLastTR.find('.product-price')
       .attr('id', 'product-price-' + latestRowCount)
-      .attr('name', 'product-price-' + latestRowCount)
+      .attr('name', 'productPrice[]')
       .val('');
     clonedLastTR.find('.product-tax')
       .attr('id', 'product-tax-' + latestRowCount)
-      .attr('name', 'product-tax-' + latestRowCount)
+      .attr('name', 'productTax[]')
+      .val('');
+    clonedLastTR.find('.product-quantity')
+      .attr('id', 'product-quantity-' + latestRowCount)
+      .attr('name', 'productQuantity[]')
       .val('');
     clonedLastTR.insertAfter(lastTR);
   })
@@ -101,10 +106,10 @@ $(document).ready(function() {
 
     clonedLastTR.find('.product-payment-select')
       .attr('id', 'product-payment-select-' + latestRowCount)
-      .attr('name', 'product-payment-select-' + latestRowCount);
+      .attr('name', 'productPaymentSelect[]');
     clonedLastTR.find('.product-amount')
       .attr('id', 'product-amount-' + latestRowCount)
-      .attr('name', 'product-amount-' + latestRowCount)
+      .attr('name', 'productAmount[]')
       .val('');
     clonedLastTR.insertAfter(lastTR);
   })
