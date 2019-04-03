@@ -41,7 +41,7 @@
                             <tbody>
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td>{{ $product->name }}</td>
+                                        <td><a href="{{ route('product.show', $product) }}">{{ $product->name }}</a></td>
                                         <td>{{ $product->price}}</td>
                                         <td>{{ $product->tax }}</td>
 
@@ -55,6 +55,7 @@
                                                         @csrf
                                                         @method('delete')
                                                         
+                                                        <a class="dropdown-item" href="{{ route('product.show', $product) }}">{{ __('View') }}</a>
                                                         <a class="dropdown-item" href="{{ route('product.edit', $product) }}">{{ __('Edit') }}</a>
                                                         <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this product?") }}') ? this.parentElement.submit() : ''">
                                                             {{ __('Delete') }}

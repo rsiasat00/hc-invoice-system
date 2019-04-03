@@ -13,6 +13,7 @@
                                 <h3 class="mb-0">{{ __('Edit Invoice') }}</h3>
                             </div>
                             <div class="col-4 text-right">
+                                <a class="btn btn-sm btn-success mr-0" href="{{ route('invoice.show', $invoice) }}">{{ __('View') }}</a>
                                 <form action="{{ route('invoice.destroy', $invoice) }}" method="post" class="d-inline-block">
                                     @csrf
                                     @method('delete')

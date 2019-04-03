@@ -44,7 +44,7 @@
                             <tbody>
                                 @foreach ($invoices as $invoice)
                                     <tr>
-                                        <td>{{ $invoice->name }}</td>
+                                        <td><a href="{{ route('invoice.show', $invoice) }}">{{ $invoice->name }}</a></td>
                                         <td>{{ $invoice->address}}</td>
                                         <td>{{ $invoice->invoice_date }}</td>
                                         <td>{{ $invoice->invoice_number }}</td>
@@ -60,6 +60,7 @@
                                                         @csrf
                                                         @method('delete')
                                                         
+                                                        <a class="dropdown-item" href="{{ route('invoice.show', $invoice) }}">{{ __('View') }}</a>
                                                         <a class="dropdown-item" href="{{ route('invoice.edit', $invoice) }}">{{ __('Edit') }}</a>
                                                         <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this invoice?") }}') ? this.parentElement.submit() : ''">
                                                             {{ __('Delete') }}
