@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Invoice;
 use App\Product;
-use App\Order;
+use App\PurchaseLineItem;
 use App\PaymentLineItem;
 use Illuminate\Http\Request;
 use App\Http\Requests\InvoiceRequest;
@@ -33,7 +33,7 @@ class InvoiceController extends Controller
         return view('invoices.create',
             [
                 'products' => Product::orderBy('name', 'ASC')->get(),
-                'purchaseLineItems' => collect(new Order),
+                'purchaseLineItems' => collect(new PurchaseLineItem),
                 'paymentLineItems' => collect(new PaymentLineItem)
             ]
         );
@@ -61,7 +61,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        $purchaseLineItems = Order::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get();
+        $purchaseLineItems = PurchaseLineItem::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get();
         $paymentLineItems = PaymentLineItem::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get();
         $paymentLineItemsTotal = 0;
         $purchaseLineItemsTotal = 0;
@@ -103,7 +103,7 @@ class InvoiceController extends Controller
             [
                 'invoice' => $invoice,
                 'products' => Product::orderBy('name', 'ASC')->get(),
-                'purchaseLineItems' => Order::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get(),
+                'purchaseLineItems' => PurchaseLineItem::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get(),
                 'paymentLineItems' => PaymentLineItem::where('invoice_id', $invoice->id)->orderBy('created_at', 'ASC')->get()
             ]
         );
@@ -146,14 +146,14 @@ class InvoiceController extends Controller
         $productTax = $request->productTax;
         $productQuantity = $request->productQuantity;
         
-        $oldPurchaseLineItems = Order::where('invoice_id', $invoice->id)->get();
+        $oldPurchaseLineItems = PurchaseLineItem::where('invoice_id', $invoice->id)->get();
         for ($i=0; $i < count($oldPurchaseLineItems); $i++) { 
             $oldPurchaseLineItems[$i]->delete();
         }
 
         for ($x = 0; $x < $productPurchaseCtr; $x++) {
             
-            $newPurchaseLineItem = new Order();
+            $newPurchaseLineItem = new PurchaseLineItem();
             $newPurchaseLineItem->invoice_id = $invoice->id;
             $newPurchaseLineItem->product_id = $productPurchaseSelect[$x];
             $newPurchaseLineItem->price = $productPrice[$x];

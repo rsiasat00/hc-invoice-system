@@ -12,10 +12,10 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'price', 'tax', 'order_id'
+        'name', 'price', 'tax'
     ];
 
-    public function orders() {
-        return $this->hasMany('App\Order');
+    public function purchase_line_items() {
+        return $this->hasMany('App\PurchaseLineItem');
     }
 }

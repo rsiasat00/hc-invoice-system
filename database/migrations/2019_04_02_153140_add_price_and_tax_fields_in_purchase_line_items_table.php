@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPriceAndTaxFieldsInOrdersTable extends Migration
+class AddPriceAndTaxFieldsInPurchaseLineItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddPriceAndTaxFieldsInOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
+        Schema::table('purchase_line_items', function (Blueprint $table) {
             $table->decimal("price", 8,2)->default(0.00);
             $table->decimal("tax", 8,2)->default(0.00);
         });
@@ -26,7 +26,7 @@ class AddPriceAndTaxFieldsInOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
+        Schema::table('purchase_line_items', function (Blueprint $table) {
             $table->dropColumn(['price', 'tax']);
         });
     }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Invoice;
 use App\Product;
-use App\Order;
+use App\PurchaseLineItem;
 use App\User;
 use Carbon\Carbon;
 

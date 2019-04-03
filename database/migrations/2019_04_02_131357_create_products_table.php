@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
             $table->string("name")->nullable();
             $table->decimal("price", 8,2)->default(0.00);
             $table->decimal("tax", 8,2)->default(0.00);
-            $table->unsignedInteger("order_id")->nullable();
 
             $table->timestamps();
         });

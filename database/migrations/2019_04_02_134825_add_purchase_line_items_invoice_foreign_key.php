@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddOrderInvoiceForeignKey extends Migration
+class AddPurchaseLineItemsInvoiceForeignKey extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddOrderInvoiceForeignKey extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
+        Schema::table('purchase_line_items', function (Blueprint $table) {
             $table->foreign('invoice_id')
                     ->references('id')->on('invoices');
             $table->foreign('product_id')
@@ -28,7 +28,7 @@ class AddOrderInvoiceForeignKey extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
+        Schema::table('purchase_line_items', function (Blueprint $table) {
             $table->dropForeign(['invoice_id']);
             $table->dropForeign(['product_id']);
         });

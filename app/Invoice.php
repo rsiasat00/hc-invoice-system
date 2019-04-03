@@ -19,8 +19,8 @@ class Invoice extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function orders() {
-        return $this->hasMany('App\Order');
+    public function purchase_line_items() {
+        return $this->hasMany('App\PurchaseLineItem');
     }
 
     public function payment_line_items() {
