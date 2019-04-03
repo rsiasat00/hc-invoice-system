@@ -16,7 +16,7 @@ class InvoiceSeeder extends Seeder
      */
     public function run()
     {
-        // factory(App\Invoice::class, 10)->create();
+        
         $invoices = [
             array(
                 'name' => "Invoice 1", 
